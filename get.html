@@ -2,8 +2,10 @@
 <head>
 </head>
 <body>
-	<p id="target"></p>
-	<button onclick="makeCall();">Do It!</button>
+	<p>Name: <span id="target"></span></p>
+	<button onclick="makeCall();">Make AJAX Call</button>
+	<button onclick="reset();">Reset</button>
+	<p>Example Data: <a href="example.json">example.json</a></p>
 	<script type="text/javascript" src="lib/jquery-2.1.0.js"></script>
 	<script type="text/javascript">
 		function makeCall() {
@@ -12,6 +14,10 @@
 					jQuery( '#target' ).text( data.name );
 				}
 			);
+		}
+		
+		function reset() {
+			jQuery( '#target' ).text( '' );
 		}
 	</script>
 </body>
