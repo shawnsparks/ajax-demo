@@ -1,0 +1,64 @@
+<html>
+<head>
+</head>
+<body>
+	<ul>
+		<li><a href="get.html">Get Example</a></li>
+		<li><a href="oldschool.html">Old School</a></li>
+		<li><a href="post.html">Post Example</a></li>
+	</ul>
+	<h1>Old School Get Example</h1>
+	<p>Name: <span id="target"></span></p>
+	<button onclick="makeCall();">Make AJAX Call</button>
+	<button onclick="reset();">Reset</button>
+	<p>Example Data: <a href="example.json">example.json</a></p>
+	<script type="text/javascript" src="lib/jquery-2.1.0.js"></script>
+	<script type="text/javascript">
+		function makeCall() {
+			sendXmlHttpRequest( 'example.json', 'target' );
+		}
+		
+		function changeState(targetElement) {
+			if (xmlHttp.readyState == 4 || xmlHttp.readyState == "complete") {
+				document.getElementById(targetElement).innerHTML = xmlHttp.responseText;
+			}
+		}
+
+		function getXmlHttpObject() {
+			var xmlHttp = null;
+			try {
+				// Firefox, Opera 8.0+, Safari
+				xmlHttp=new XMLHttpRequest();
+			}
+			catch (e) {
+				// Internet Explorer
+				try {
+					xmlHttp=new ActiveXObject("Msxml2.XMLHTTP");
+				}
+				catch (e) {
+					xmlHttp=new ActiveXObject("Microsoft.XMLHTTP");
+				}
+			}
+			return xmlHttp;
+		}
+
+		function sendXmlHttpRequest(targetURL, targetElement) {
+			xmlHttp = getXmlHttpObject();
+
+			if (xmlHttp == null) {
+				alert ("Browser does not support HTTP Request");
+				return;
+			}
+	
+			//Send request
+			xmlHttp.onreadystatechange = function() {changeState(targetElement);};
+			xmlHttp.open("GET", targetURL);
+			xmlHttp.send(false);
+		}
+		
+		function reset() {
+			jQuery( '#target' ).text( '' );
+		}
+	</script>
+</body>
+</html>

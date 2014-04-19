@@ -1,0 +1,39 @@
+<html>
+<body>
+	<ul>
+		<li><a href="get.html">Get Example</a></li>
+		<li><a href="oldschool.html">Old School</a></li>
+		<li><a href="post.html">Post Example</a></li>
+	</ul>
+	<h1>Post Example</h1>
+	<label>Name</label>
+	<input type="text" name="name"/><br>
+	<button onclick="submit();">Submit Data</button>
+	<button onclick="reset();">Reset</button>
+	<h2>Posted Data</h2>
+	<p id="request"></p>
+	<h2>Response</h2>
+	<p id="response"></p>
+	
+	<script type="text/javascript" src="lib/jquery-2.1.0.js"></script>
+	<script type="text/javascript">
+		function submit() {
+			var data = {
+				name: jQuery( 'input[name=name]' ).val()
+			};
+			jQuery( '#request' ).text( JSON.stringify( data ) );
+			jQuery.post( '/demo', 
+						data, 
+						function( data ) {
+							jQuery( '#response' ).text( data );
+						}
+			);
+		}
+		
+		function reset() {
+			jQuery( '#request' ).text( '' );
+			jQuery( '#response' ).text( '' );
+		}
+	</script>
+</body>
+</html>
