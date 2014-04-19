@@ -1,0 +1,18 @@
+<html>
+<head>
+</head>
+<body>
+	<p id="target"></p>
+	<button onclick="makeCall();">Do It!</button>
+	<script type="text/javascript" src="lib/jquery-2.1.0.js"></script>
+	<script type="text/javascript">
+		function makeCall() {
+			jQuery.get( 'example.json',
+				function( data ) {
+					jQuery( '#target' ).text( data.name );
+				}
+			);
+		}
+	</script>
+</body>
+</html>
